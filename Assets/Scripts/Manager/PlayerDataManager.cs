@@ -7,6 +7,7 @@ public class PlayerDataManager : MonoBehaviour {
     public static PlayerDataManager instance;
 
     public User my;
+    public bool isLoad = false;
 
     public void Awake()
     {

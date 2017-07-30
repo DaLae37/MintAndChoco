@@ -65,7 +65,7 @@ public class NetworkManager : MonoBehaviour
     IEnumerator TestConnect()
     {
         yield return new WaitForSeconds(1f);
-        EmitJoin("User"+Random.Range(0,1000));
+        EmitJoin("User" + Random.Range(0, 1000));
     }
 
     #region JoinMethod
@@ -130,6 +130,8 @@ public class NetworkManager : MonoBehaviour
     /// </summary>
     public void EmitMatch()
     {
+        userList.Clear();
+
         JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
         json.AddField("name", PlayerDataManager.instance.my.name);
         json.AddField("pick", PlayerDataManager.instance.my.isCat);
@@ -151,9 +153,10 @@ public class NetworkManager : MonoBehaviour
 
         float readyCount = json.GetField("ready").f;
 
+        print(readyCount + "is count");
+
         if (readyCount >= 2)
             EmitUserData();
-
 
     }
 
@@ -174,9 +177,14 @@ public class NetworkManager : MonoBehaviour
 
     public void OnUserData(SocketIOEvent e)
     {
+        print("set user Data");
+
         JSONObject json = e.data;
         string name = json.GetField("name").str;
         bool isCat = json.GetField("pick").b;
+
+        if (CheckExistUser(name))
+            return;
 
         if (name == PlayerDataManager.instance.my.name)
             userList.Add(PlayerDataManager.instance.my);
@@ -185,6 +193,7 @@ public class NetworkManager : MonoBehaviour
 
         if (userList.Count >= 2)
             GameManager.instance.StartGame();
+
     }
 
     /// <summary>
@@ -192,6 +201,11 @@ public class NetworkManager : MonoBehaviour
     /// </summary>
     public void EmitUserData()
     {
+        if (PlayerDataManager.instance.isLoad)
+            return;
+
+        PlayerDataManager.instance.isLoad = true;
+
         JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
         json.AddField("name", PlayerDataManager.instance.my.name);
         json.AddField("pick", PlayerDataManager.instance.my.isCat);
@@ -294,5 +308,17 @@ public class NetworkManager : MonoBehaviour
 
     #endregion
 
+
+    //중복 생성을 체크합니다.
+    public bool CheckExistUser(string _name)
+    {
+        for (int i = 0; i < userList.Count; i++)
+        {
+            if (userList[i].name == _name)
+                return true;
+        }
+
+        return false;
+    }
 
 }
