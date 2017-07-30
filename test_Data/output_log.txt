@@ -1,0 +1,48 @@
+Mono path[0] = 'C:/Users/영남/Downloads/TomAndJerry/test_Data/Managed'
+Mono config path = 'C:/Users/영남/Downloads/TomAndJerry/test_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/영남/Downloads/TomAndJerry/test_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55097
+Multi-casting "[IP] 192.168.17.1 [Port] 55097 [Flags] 2 [Guid] 881781008 [EditorId] 1256279160 [Version] 1048832 [Id] WindowsPlayer(kyn-notebook) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55097]
+PlayerConnection already initialized - listening to [0.0.0.0:55097]
+Player data archive not found at `C:/Users/영남/Downloads/TomAndJerry/test_Data/data.unity3d`, using local filesystem
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics 5500 (ID=0x1616)
+    Vendor:   Intel
+    VRAM:     2154 MB
+    Driver:   20.19.15.4549
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.086 seconds
+Platform assembly: C:\Users\영남\Downloads\TomAndJerry\test_Data\Managed\Mono.Security.dll (this message is harmless)
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 2.375620 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 3114 -> priority: 1 
+  Thread -> id: 3cac -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 15.350231 ms
+System memory in use before: 19.0 MB.
+System memory in use after: 19.0 MB.
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 376.
+Total: 0.568780 ms (FindLiveObjects: 0.046614 ms CreateObjectMapping: 0.026514 ms MarkObjects: 0.467426 ms  DeleteObjects: 0.026086 ms)
+
