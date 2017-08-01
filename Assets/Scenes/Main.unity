@@ -423,8 +423,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   my:
     name: UserName
-    isCat: 0
+    isCat: 1
     controller: {fileID: 0}
+  isLoad: 0
 --- !u!1 &1420273024
 GameObject:
   m_ObjectHideFlags: 0

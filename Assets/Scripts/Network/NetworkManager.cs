@@ -58,7 +58,7 @@ public class NetworkManager : MonoBehaviour
         socket.On("move", OnMove);
         socket.On("bullet", OnBullet);
         socket.On("userData", OnUserData);
-
+        socket.On("getout", OnGetOut);
         StartCoroutine(TestConnect());
     }
 
@@ -88,6 +88,14 @@ public class NetworkManager : MonoBehaviour
         socket.Emit("join", json);
     }
 
+    #endregion
+
+    #region getOutMethod
+    //상대방이 탈주하면 탈주합니다.
+    public void OnGetOut(SocketIOEvent e)
+    {
+        SceneManager.LoadScene("mainScene");
+    }
     #endregion
 
     #region PickMethod

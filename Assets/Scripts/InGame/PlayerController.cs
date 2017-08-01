@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviour
         if (isLocal && isInput)
         {
             //에디터 전용 움직임
-            h = Input.GetAxis("Horizontal");
-            v = Input.GetAxis("Vertical");
+            h = joyStick.instance.Horizontal();
+            v = joyStick.instance.Vertical();
         }
         else
         {
