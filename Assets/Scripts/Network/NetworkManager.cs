@@ -59,13 +59,14 @@ public class NetworkManager : MonoBehaviour
         socket.On("bullet", OnBullet);
         socket.On("userData", OnUserData);
         socket.On("getout", OnGetOut);
+        socket.On("hp", OnHp);
         StartCoroutine(TestConnect());
     }
 
     IEnumerator TestConnect()
     {
         yield return new WaitForSeconds(1f);
-        EmitJoin("User" + Random.Range(0, 1000));
+        EmitJoin(PlayerPrefs.GetString("name")); //변경
     }
 
     #region JoinMethod
@@ -84,7 +85,6 @@ public class NetworkManager : MonoBehaviour
     {
         JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
         json.AddField("name", _name);
-
         socket.Emit("join", json);
     }
 
@@ -139,7 +139,7 @@ public class NetworkManager : MonoBehaviour
     public void EmitMatch()
     {
         userList.Clear();
-
+        MainManager.instance.isMatching = true;
         JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
         json.AddField("name", PlayerDataManager.instance.my.name);
         json.AddField("pick", PlayerDataManager.instance.my.isCat);
@@ -190,6 +190,7 @@ public class NetworkManager : MonoBehaviour
         JSONObject json = e.data;
         string name = json.GetField("name").str;
         bool isCat = json.GetField("pick").b;
+        int hp = (int)json.GetField("hp").f;
 
         if (CheckExistUser(name))
             return;
@@ -217,8 +218,37 @@ public class NetworkManager : MonoBehaviour
         JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
         json.AddField("name", PlayerDataManager.instance.my.name);
         json.AddField("pick", PlayerDataManager.instance.my.isCat);
-
+        json.AddField("hp", PlayerDataManager.instance.my.hp);
         socket.Emit("userData", json);
+    }
+
+    #endregion
+
+    #region HpMethod
+
+    /// <summary>
+    /// HP를 받습니다.
+    /// </summary>
+    /// <param name="e"></param>
+    public void OnHp(SocketIOEvent e)
+    {
+        JSONObject json = e.data;
+        string name = json.GetField("name").str;
+        int hp = (int)json.GetField("hp").f;
+
+        FindUserController(name).SetHp(hp);
+    }
+
+    /// <summary>
+    /// 위치를 보냅니다.
+    /// </summary>
+    public void EmitHp(int hp)
+    {
+        JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
+        json.AddField("name", PlayerDataManager.instance.my.name);
+        json.AddField("hp", hp);
+
+        socket.Emit("hp", json);
     }
 
     #endregion

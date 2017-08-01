@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: ae0c99083cfab4240b78a9e69493dff2
+timeCreated: 1501581344
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SeoulNamsan CEB
+  fontNames:
+  - SeoulNamsan CEB
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

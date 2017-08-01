@@ -20,3 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ProfileScene.unity
     guid: 6a5d99dedfe8998458a8d8ef6521608a
+  - enabled: 1
+    path: Assets/Scenes/ProfileCreateScene.unity
+    guid: 115f19ff41a95074e9a69e0dae63f36c
+  - enabled: 1
+    path: Assets/Scenes/ARScene.unity
+    guid: aeeef5559150e054f9d0f1345126d817

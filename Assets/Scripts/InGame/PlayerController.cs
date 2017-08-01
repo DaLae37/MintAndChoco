@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     Quaternion oldRot;
 
+    int hp;
+
     //받는 값
     public Quaternion currentRot;
 
@@ -102,6 +104,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SendHp()
+    {
+        NetworkManager.instance.EmitHp(hp);
+    }
+
     public void SendPosition()
     {
         if (oldPos != tr.position)
@@ -132,6 +139,10 @@ public class PlayerController : MonoBehaviour
         tr.rotation = _rot;
     }
 
+    public void SetHp(int _hp)
+    {
+        hp = _hp;
+    }
     /// <summary>
     /// 서버에서 발사를 받아서 쏩니다.
     /// </summary>
