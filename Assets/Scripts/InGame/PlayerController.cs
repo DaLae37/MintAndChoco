@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         isLocal = _isLocal;
         ri.useGravity = true;
+        if (_isLocal)
+            cameraRot.instance.SetTarget(tr);
     }
 
     public void SetInput(bool _isInput)
@@ -84,8 +86,12 @@ public class PlayerController : MonoBehaviour
     {
         if (isLocal)
         {
+            Vector3 movePos = ((tr.forward * v * moveSpeed) + (tr.right * h * moveSpeed));
+            movePos.y = ri.velocity.y;
+
             //에디터 전용 움직임
-            ri.velocity = new Vector3(h * moveSpeed, ri.velocity.y, v * moveSpeed);
+            ri.velocity = movePos;
+
             SendPosition();
             SendRotation();
         }
