@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cat
   - Mouse
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -70,8 +70,9 @@ public class cameraRot : MonoBehaviour
                             rotX -= deltaY * Time.deltaTime * rotSpeed * dir;
                             rotY += deltaX * Time.deltaTime * rotSpeed * dir;
                             rotX = Mathf.Clamp(rotX, -45f, 45f);
+
                             cam.transform.eulerAngles = new Vector3(rotX, rotY, 0f);
-                            
+                            PlayerController.instance.transform.eulerAngles = new Vector3(0f, rotY, 0f);
                         }
                     }
                     else if (touch.phase == TouchPhase.Ended)

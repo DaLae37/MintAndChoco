@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ARScene\ARSceneManager.cs" />
+    <Compile Include="Assets\Scripts\InGame\Bullet.cs" />
     <Compile Include="Assets\Scripts\InGame\cameraRot.cs" />
     <Compile Include="Assets\Scripts\InGame\GameManager.cs" />
     <Compile Include="Assets\Scripts\InGame\HUD.cs" />

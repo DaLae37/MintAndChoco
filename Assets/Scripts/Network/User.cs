@@ -3,30 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class User {
-
+public class User{
     public string name;
     public bool isCat;
     public int hp;
     public PlayerController controller;
-    void start()
-    {
-        name = PlayerPrefs.GetString("name");
-        if (PlayerPrefs.GetInt("isCat") == 0)
-        {
-            isCat = false;
-        }
-        else
-        {
-            isCat = true;
-        }
-    }
     public User() {
         hp = 100;
     }
 
     public User(string _name) {
         name = _name;
+        isCat = false;
         hp = 100;
     }
 

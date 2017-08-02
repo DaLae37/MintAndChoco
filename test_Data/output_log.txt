@@ -1,11 +1,3 @@
-Mono path[0] = 'D:/Coding/UnityProject/2017SeogangDae/test_Data/Managed'
-Mono config path = 'D:/Coding/UnityProject/2017SeogangDae/test_Data/Mono/etc'
-PlayerConnection initialized from D:/Coding/UnityProject/2017SeogangDae/test_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55386
-Multi-casting "[IP] 172.30.1.18 [Port] 55386 [Flags] 2 [Guid] 98844279 [EditorId] 460110124 [Version] 1048832 [Id] WindowsPlayer(DaLae) [Debug] 0" to [225.0.0.222:54997]...
-Started listening to [0.0.0.0:55386]
-PlayerConnection already initialized - listening to [0.0.0.0:55386]
-Player data archive not found at `D:/Coding/UnityProject/2017SeogangDae/test_Data/data.unity3d`, using local filesystem
 Initialize engine version: 2017.1.0f3 (472613c02cf7)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -27,48 +19,62 @@ Platform assembly: D:\Coding\UnityProject\2017SeogangDae\test_Data\Managed\Unity
 Loading D:\Coding\UnityProject\2017SeogangDae\test_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
 Platform assembly: D:\Coding\UnityProject\2017SeogangDae\test_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading D:\Coding\UnityProject\2017SeogangDae\test_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: D:\Coding\UnityProject\2017SeogangDae\test_Data\Managed\Vuforia.UnityExtensions.dll (this message is harmless)
+Loading D:\Coding\UnityProject\2017SeogangDae\test_Data\Managed\Vuforia.UnityExtensions.dll into Unity Child Domain
 Platform assembly: D:\Coding\UnityProject\2017SeogangDae\test_Data\Managed\System.dll (this message is harmless)
 Platform assembly: D:\Coding\UnityProject\2017SeogangDae\test_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.030 seconds
+- Completed reload, in  0.033 seconds
+OnLevelWasLoaded was found on VuforiaAbstractBehaviour
+This message has been deprecated and will be removed in a later version of Unity.
+Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
+ 
+(Filename:  Line: 380)
+
+OnLevelWasLoaded was found on VuforiaBehaviour
+This message has been deprecated and will be removed in a later version of Unity.
+Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
+ 
+(Filename:  Line: 380)
+
 Platform assembly: D:\Coding\UnityProject\2017SeogangDae\test_Data\Managed\Mono.Security.dll (this message is harmless)
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.848198 ms
-Setting up 4 worker threads for Enlighten.
-  Thread -> id: 2f04 -> priority: 1 
-  Thread -> id: 4280 -> priority: 1 
-  Thread -> id: 3cbc -> priority: 1 
-  Thread -> id: 3550 -> priority: 1 
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 6.168896 ms
-System memory in use before: 18.8 MB.
-System memory in use after: 18.8 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 376.
-Total: 0.301037 ms (FindLiveObjects: 0.037925 ms CreateObjectMapping: 0.011061 ms MarkObjects: 0.236642 ms  DeleteObjects: 0.013827 ms)
-
-0is count
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:Log(Object)
-UnityEngine.MonoBehaviour:print(Object)
-NetworkManager:OnGameLoad(SocketIOEvent) (at C:\Users\영남\Documents\2017SeogangDae\Assets\Scripts\Network\NetworkManager.cs:156)
-SocketIO.SocketIOComponent:EmitEvent(SocketIOEvent) (at C:\Users\영남\Documents\2017SeogangDae\Assets\SocketIO\Scripts\SocketIO\SocketIOComponent.cs:399)
-SocketIO.SocketIOComponent:Update() (at C:\Users\영남\Documents\2017SeogangDae\Assets\SocketIO\Scripts\SocketIO\SocketIOComponent.cs:130)
+UnloadTime: 0.856493 ms
+Vuforia initialization successful
  
-(Filename: C:/Users/영남/Documents/2017SeogangDae/Assets/Scripts/Network/NetworkManager.cs Line: 156)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: de4 -> priority: 1 
+  Thread -> id: 3f6c -> priority: 1 
+  Thread -> id: 34d4 -> priority: 1 
+  Thread -> id: 984 -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.653134 ms
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 475.
+Total: 0.483555 ms (FindLiveObjects: 0.052148 ms CreateObjectMapping: 0.018962 ms MarkObjects: 0.386370 ms  DeleteObjects: 0.025679 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.342024 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 562.
+Total: 0.361481 ms (FindLiveObjects: 0.043456 ms CreateObjectMapping: 0.016592 ms MarkObjects: 0.279703 ms  DeleteObjects: 0.020543 ms)
 
 1is count
-UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
-UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
-UnityEngine.Logger:Log(LogType, Object)
-UnityEngine.Debug:Log(Object)
-UnityEngine.MonoBehaviour:print(Object)
-NetworkManager:OnGameLoad(SocketIOEvent) (at C:\Users\영남\Documents\2017SeogangDae\Assets\Scripts\Network\NetworkManager.cs:156)
-SocketIO.SocketIOComponent:EmitEvent(SocketIOEvent) (at C:\Users\영남\Documents\2017SeogangDae\Assets\SocketIO\Scripts\SocketIO\SocketIOComponent.cs:399)
-SocketIO.SocketIOComponent:Update() (at C:\Users\영남\Documents\2017SeogangDae\Assets\SocketIO\Scripts\SocketIO\SocketIOComponent.cs:130)
  
-(Filename: C:/Users/영남/Documents/2017SeogangDae/Assets/Scripts/Network/NetworkManager.cs Line: 156)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+2is count
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+set user Data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+set user Data
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 

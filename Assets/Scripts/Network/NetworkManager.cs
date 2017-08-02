@@ -41,7 +41,6 @@ public class NetworkManager : MonoBehaviour
 
         if (instance != null)
             Destroy(this.gameObject);
-
         else
         {
             DontDestroyOnLoad(this.gameObject);
@@ -52,6 +51,7 @@ public class NetworkManager : MonoBehaviour
     // Socket 에서 들어오는 데이터 값들은 항상 여기서 미리 선언 해야해요.
     void Start()
     {
+
         socket.On("join", OnJoin);
         socket.On("pick", OnMatch);
         socket.On("gameLoad", OnGameLoad);
@@ -59,30 +59,37 @@ public class NetworkManager : MonoBehaviour
         socket.On("bullet", OnBullet);
         socket.On("userData", OnUserData);
         socket.On("getout", OnGetOut);
+        socket.On("rotate", OnRotate);
         socket.On("hp", OnHp);
         StartCoroutine(TestConnect());
     }
 
     IEnumerator TestConnect()
     {
-        yield return new WaitForSeconds(1f);
-        EmitJoin(PlayerPrefs.GetString("name")); //변경
+        yield return new WaitForSeconds(0.5f);
+        EmitJoin(PlayerPrefs.GetString("name"),PlayerPrefs.GetInt("isCat")); //변경
     }
 
     #region JoinMethod
 
     public void OnJoin(SocketIOEvent e)
     {
+        bool isCat;
+        if (PlayerPrefs.GetInt("isCat") == 0)
+            isCat = false;
+        else
+            isCat = true;
         JSONObject json = e.data;
-        PlayerDataManager.instance.my = new User(json.GetField("name").str);
+        PlayerDataManager.instance.my = new User(json.GetField("name").str,isCat);
     }
 
     /// <summary>
     /// 닉네임 정보를 보냅니다.
     /// </summary>
     /// <param name="name"></param>
-    public void EmitJoin(string _name)
+    public void EmitJoin(string _name, int _pick)
     {
+
         JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
         json.AddField("name", _name);
         socket.Emit("join", json);
@@ -94,6 +101,8 @@ public class NetworkManager : MonoBehaviour
     //상대방이 탈주하면 탈주합니다.
     public void OnGetOut(SocketIOEvent e)
     {
+        MainManager.instance.isMatching = false;
+        Destroy(gameObject);
         SceneManager.LoadScene("mainScene");
     }
     #endregion
@@ -138,8 +147,8 @@ public class NetworkManager : MonoBehaviour
     /// </summary>
     public void EmitMatch()
     {
-        userList.Clear();
         MainManager.instance.isMatching = true;
+        userList.Clear();
         JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
         json.AddField("name", PlayerDataManager.instance.my.name);
         json.AddField("pick", PlayerDataManager.instance.my.isCat);
@@ -299,7 +308,7 @@ public class NetworkManager : MonoBehaviour
         JSONObject json = e.data;
         string name = json.GetField("name").str;
         Quaternion rot = new Quaternion(json.GetField("rotX").f, json.GetField("rotY").f, json.GetField("rotZ").f, json.GetField("rotW").f);
-
+        
         FindUserController(name).SetRotation(rot);
     }
 

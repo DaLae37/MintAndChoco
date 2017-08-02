@@ -11,7 +11,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DaLae
-  productName: TomAndJerry
+  productName: MintAndChoco
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -141,7 +141,8 @@ PlayerSettings:
   targetPixelDensity: 0
   resolutionScalingMode: 0
   applicationIdentifier:
-    Android: com.DaLae.TomAndJerry
+    Android: com.DaLae.MintAndChoco
+    Standalone: com.DaLae.MintAndChoco
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -598,9 +599,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 27f8a2ae-64b1-4d6e-b4a0-7858605a34f8
-  projectName: TomAndJerry
-  organizationId: kyn320
+  cloudProjectId: b1b22fde-9d76-4718-a6dd-3dfe686decf2
+  projectName: MintAndChoco
+  organizationId: dalae
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

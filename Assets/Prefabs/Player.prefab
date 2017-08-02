@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1764562808081850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -128,5 +128,7 @@ MonoBehaviour:
   currentPos: {x: 0, y: 0, z: 0}
   currentVel: {x: 0, y: 0, z: 0}
   currentRot: {x: 0, y: 0, z: 0, w: 0}
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 1923926729236534, guid: 3bf852a8ec87b92408d04ed93d659a2d,
+    type: 2}
   syncTime: 0
+  camPos: {fileID: 0}

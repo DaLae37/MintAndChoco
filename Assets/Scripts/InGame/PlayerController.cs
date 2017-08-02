@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public static PlayerController instance;
+
     public bool isLocal = false, isInput = false;
 
     public float moveSpeed, rotateSpeed;
@@ -33,12 +35,13 @@ public class PlayerController : MonoBehaviour
     Transform tr;
     Rigidbody ri;
 
+    public Transform camPos;
     public void SetLocal(bool _isLocal)
     {
         isLocal = _isLocal;
         ri.useGravity = true;
         if (_isLocal)
-            cameraRot.instance.SetTarget(tr);
+            cameraRot.instance.SetTarget(camPos);
     }
 
     public void SetInput(bool _isInput)
@@ -49,7 +52,10 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         tr = GetComponent<Transform>();
+        oldRot = tr.rotation;
+        oldPos = tr.position;
         ri = GetComponent<Rigidbody>();
     }
 
@@ -59,9 +65,11 @@ public class PlayerController : MonoBehaviour
 
         if (isLocal && isInput)
         {
+            
             //에디터 전용 움직임
             h = joyStick.instance.Horizontal();
             v = joyStick.instance.Vertical();
+
         }
         else
         {
@@ -120,8 +128,8 @@ public class PlayerController : MonoBehaviour
 
     public void SendRotation()
     {
-        if (oldRot != tr.rotation)
-        {
+        if (oldRot.x != tr.rotation.x)
+        { 
             oldRot = tr.rotation;
             NetworkManager.instance.EmitRotate(tr.rotation);
         }
@@ -155,5 +163,12 @@ public class PlayerController : MonoBehaviour
     {
         NetworkManager.instance.EmitBullet(0);
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            hp -= Bullet.damage;
+            SendHp();
+        }
+    }
 }
