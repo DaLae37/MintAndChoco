@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-
+    float oldTime = 0.0f;
     public static PlayerController instance;
 
     public bool isLocal = false, isInput = false;
@@ -89,7 +89,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+
+            Move();
+
     }
 
     void Move()
@@ -101,9 +103,13 @@ public class PlayerController : MonoBehaviour
 
             //에디터 전용 움직임
             ri.velocity = movePos;
-
-            SendPosition();
-            SendRotation();
+            oldTime += Time.deltaTime;
+            if (oldTime >= 0.1f)
+            {
+                SendPosition();
+                SendRotation();
+                oldTime = 0;
+            }
         }
         else
         {
