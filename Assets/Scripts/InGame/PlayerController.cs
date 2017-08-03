@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isLocal = false, isInput = false;
 
-    public float moveSpeed, rotateSpeed;
+    public float moveSpeed, rotateSpeed, lerpTime = 20f;
 
     Vector3 oldPos;
 
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
         if (isLocal && isInput)
         {
-            
+
             //에디터 전용 움직임
             h = joyStick.instance.Horizontal();
             v = joyStick.instance.Vertical();
@@ -89,32 +89,32 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-            Move();
-
+        Move();
     }
 
     void Move()
     {
         if (isLocal)
         {
-            Vector3 movePos = ((tr.forward * v * moveSpeed) + (tr.right * h * moveSpeed));
-            movePos.y = ri.velocity.y;
-
-            //에디터 전용 움직임
-            ri.velocity = movePos;
-            oldTime += Time.deltaTime;
-            if (oldTime >= 0.1f)
+            if (h == 0 && v == 0)
             {
-                SendPosition();
-                SendRotation();
-                oldTime = 0;
+                ri.velocity = new Vector3(0, ri.velocity.y, 0);
             }
+            else {
+                Vector3 movePos = ((tr.forward * v * moveSpeed) + (tr.right * h * moveSpeed));
+                movePos.y = ri.velocity.y;
+
+                //에디터 전용 움직임
+                ri.velocity = movePos;
+            }
+
+            SendPosition();
+            SendRotation();
         }
         else
         {
             //현재 위치 = 이전 위치 + ( 속도 * 시간 ) + ( 1 / 2 * 가속도 * 시간 ^ 2 )
-            tr.position = currentPos + ((currentVel * syncTime) + (0.5f * currentVel * syncTime * syncTime));
+            tr.position = Vector3.Lerp(tr.position, currentPos + ((currentVel * syncTime) + (0.5f * currentVel * syncTime * syncTime)), Time.smoothDeltaTime * lerpTime);
         }
     }
 
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
     public void SendRotation()
     {
         if (oldRot.x != tr.rotation.x)
-        { 
+        {
             oldRot = tr.rotation;
             NetworkManager.instance.EmitRotate(tr.rotation);
         }
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Bullet")
         {
             hp -= Bullet.damage;
             SendHp();
