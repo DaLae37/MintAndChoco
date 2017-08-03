@@ -6,7 +6,12 @@ TagManager:
   tags:
   - Cat
   - Mouse
-  - Bullet
+  - Ground
+  - CatBullet
+  - MouseBullet
+  - Tree
+  - CatNamePos
+  - MouseNamePos
   layers:
   - Default
   - TransparentFX

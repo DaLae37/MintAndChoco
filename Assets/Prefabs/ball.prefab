@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4650894784932262}
   - component: {fileID: 54353712376615576}
   - component: {fileID: 114542020849232682}
+  - component: {fileID: 65671453826898590}
   m_Layer: 0
   m_Name: ball
-  m_TagString: Bullet
+  m_TagString: CatBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,8 +125,20 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &65671453826898590
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1763234108637262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &114542020849232682
 MonoBehaviour:
   m_ObjectHideFlags: 1

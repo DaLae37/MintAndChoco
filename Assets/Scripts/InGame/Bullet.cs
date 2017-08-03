@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
-    public float speed = 100.0f;
+    float speed = 2000.0f;
     public const int damage = 25;
     float livedTime = 0.0f;
 	// Use this for initialization
@@ -14,9 +14,9 @@ public class Bullet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         livedTime += Time.deltaTime;
-        if(livedTime >= 2)
-        {
+        if (livedTime >= 2.0f)
             gameObject.SetActive(false);
-        }
+        if (!gameObject.activeSelf)
+            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 	}
 }

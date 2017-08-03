@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     Quaternion oldRot;
 
-    int hp;
+    public int hp;
 
     //받는 값
     public Quaternion currentRot;
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody ri;
 
     public Transform camPos;
+    public Transform bulletPos;
     public void SetLocal(bool _isLocal)
     {
         isLocal = _isLocal;
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         tr = GetComponent<Transform>();
         oldRot = tr.rotation;
         oldPos = tr.position;
+        hp = 100;
         ri = GetComponent<Rigidbody>();
     }
 
@@ -156,13 +158,18 @@ public class PlayerController : MonoBehaviour
     public void SetHp(int _hp)
     {
         hp = _hp;
+        if (hp <= 0)
+        {
+            NetworkManager.instance.EmitDie(PlayerPrefs.GetInt("isCat"));
+        }
     }
     /// <summary>
     /// 서버에서 발사를 받아서 쏩니다.
     /// </summary>
     public void ShotBullet()
     {
-        Instantiate(bulletPrefab, tr.position, tr.rotation);
+        GameObject b = Instantiate(bulletPrefab, bulletPos.position, bulletPos.rotation);
+        b.transform.SetParent(GameObject.Find("bullets").transform);
     }
 
     public void SendBulllet()
@@ -171,9 +178,10 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (gameObject.tag == "Mouse" && collision.gameObject.tag == "CatBullet" || gameObject.tag == "Cat" && collision.gameObject.tag == "MouseBullet")
         {
             hp -= Bullet.damage;
+            collision.gameObject.SetActive(false);
             SendHp();
         }
     }

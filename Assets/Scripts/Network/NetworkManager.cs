@@ -61,12 +61,14 @@ public class NetworkManager : MonoBehaviour
         socket.On("getout", OnGetOut);
         socket.On("rotate", OnRotate);
         socket.On("hp", OnHp);
+        socket.On("win", OnWin);
+        socket.On("lose", OnLose);
         StartCoroutine(TestConnect());
     }
 
     IEnumerator TestConnect()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         EmitJoin(PlayerPrefs.GetString("name"),PlayerPrefs.GetInt("isCat")); //변경
     }
 
@@ -147,13 +149,16 @@ public class NetworkManager : MonoBehaviour
     /// </summary>
     public void EmitMatch()
     {
-        MainManager.instance.isMatching = true;
-        userList.Clear();
-        JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
-        json.AddField("name", PlayerDataManager.instance.my.name);
-        json.AddField("pick", PlayerDataManager.instance.my.isCat);
+        if (GameObject.Find("GameObject").GetComponent<SocketIOComponent>().IswsConnected)
+        {
+            MainManager.instance.isMatching = true;
+            userList.Clear();
+            JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
+            json.AddField("name", PlayerDataManager.instance.my.name);
+            json.AddField("pick", PlayerDataManager.instance.my.isCat);
 
-        socket.Emit("pick", json);
+            socket.Emit("pick", json);
+        }
     }
 
     #endregion
@@ -350,11 +355,33 @@ public class NetworkManager : MonoBehaviour
         json.AddField("name", PlayerDataManager.instance.my.name);
         json.AddField("bullet", _bulletID);
 
+
         socket.Emit("bullet", json);
     }
 
     #endregion
 
+    #region ResultMethod
+    public void EmitDie(int _isCat)
+    {
+        JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
+        json.AddField("pick", _isCat);
+
+        socket.Emit("die", json);
+    }
+    public void OnLose(SocketIOEvent e)
+    {
+        PlayerPrefs.SetInt("total",PlayerPrefs.GetInt("total") + 1);
+        SceneManager.LoadScene("mainScene");
+    }
+    public void OnWin(SocketIOEvent e)
+    {
+        PlayerPrefs.SetInt("total", PlayerPrefs.GetInt("total") + 1);
+        PlayerPrefs.SetInt("win", PlayerPrefs.GetInt("win") + 1);
+        SceneManager.LoadScene("mainScene");
+    }
+
+    #endregion
 
     //중복 생성을 체크합니다.
     public bool CheckExistUser(string _name)

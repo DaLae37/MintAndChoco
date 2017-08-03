@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class StorySceneManager : MonoBehaviour {
-
-    public GameObject[] storyBoard = new GameObject[10];
+    public static StorySceneManager instance;
+    public GameObject[] storyBoard = new GameObject[9];
     public int index = 0;
 	// Use this for initialization
 	void Start () {
+        instance = this;
         if (PlayerPrefs.HasKey("name") && !PlayerPrefs.HasKey("isCat") || !PlayerPrefs.HasKey("name") && PlayerPrefs.HasKey("isCat"))
         {
             profileCreate();
         }
+        StoryBoardCheck();
     }
 	void StoryBoardCheck()
     {
@@ -32,7 +34,6 @@ public class StorySceneManager : MonoBehaviour {
                 Skip();
             }
         }
-        StoryBoardCheck();
 	}
     void mainScene()
     {
@@ -58,17 +59,19 @@ public class StorySceneManager : MonoBehaviour {
     public void next()
     {
         index++;
-        if(index >= 10)
+        if (index >= 9)
         {
             index = 0;
         }
+        StoryBoardCheck();
     }
     public void before()
     {
         index--;
-        if(index < 0)
+        if (index < 0)
         {
-            index = 9;
+            index = 8;
         }
+        StoryBoardCheck();
     }
 }

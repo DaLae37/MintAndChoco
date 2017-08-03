@@ -51,7 +51,7 @@ namespace SocketIO
 		public WebSocket socket { get { return ws; } }
 		public string sid { get; set; }
 		public bool IsConnected { get { return connected; } }
-
+        public bool IswsConnected { get { return wsConnected; } }
 		#endregion
 
 		#region Private Properties

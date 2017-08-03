@@ -37,6 +37,7 @@ public class MainManager : MonoBehaviour {
     }
     public void mainScene()
     {
-        SceneManager.LoadScene("MainScene");
+        Destroy(GameObject.Find("GameObject").gameObject);
+        SceneManager.LoadScene("MainScene");       
     }
 }

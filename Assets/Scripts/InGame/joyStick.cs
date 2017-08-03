@@ -39,16 +39,10 @@ public class joyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     }
     public int Horizontal()
     {
-        if (Mathf.Abs(inputVector.x) >= 0.4)
-            return (int)(inputVector.x * 10);
-        else
-            return 0;
+        return (int)(inputVector.x * 10);
     }
     public int Vertical()
     {
-        if (Mathf.Abs(inputVector.z) >= 0.4)
-            return (int)(inputVector.z * 10);
-        else
-            return 0;
+        return (int)(inputVector.z * 10);
     }
 }

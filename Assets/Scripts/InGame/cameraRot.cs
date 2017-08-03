@@ -46,7 +46,8 @@ public class cameraRot : MonoBehaviour
         if (target != null)
         {
             cam.transform.position = target.position + distance;
-            target.eulerAngles = new Vector3(0f, rotY, 0f);
+            cam.transform.rotation = target.rotation;
+            
         }
  
         if (Input.touchCount > 0)
