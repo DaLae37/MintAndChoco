@@ -63,13 +63,6 @@ public class NetworkManager : MonoBehaviour
         socket.On("hp", OnHp);
         socket.On("win", OnWin);
         socket.On("lose", OnLose);
-        StartCoroutine(TestConnect());
-    }
-
-    IEnumerator TestConnect()
-    {
-        yield return new WaitForSeconds(0.1f);
-        EmitJoin(PlayerPrefs.GetString("name"),PlayerPrefs.GetInt("isCat")); //변경
     }
 
     #region JoinMethod

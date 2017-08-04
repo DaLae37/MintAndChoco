@@ -9,9 +9,9 @@ public class HUDHp : MonoBehaviour {
     Transform catHp;
     RectTransform rt;
     Transform HUDTransform;
-    Image ig;
+    public Image ig;
 
-    public PlayerController player;
+    PlayerController player;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class HUDHp : MonoBehaviour {
         if (HUDTransform != null && ig != null && player != null)
         {
             rt.position = Camera.main.WorldToScreenPoint(HUDTransform.position);
-                ig.fillAmount = player.hp / 100f;
+            ig.fillAmount = player.hp / 100f;
         }
         else if(GameObject.Find("MouseHpPos")!= null && GameObject.Find("CatHpPos")!= null)
             setTransform();
@@ -31,9 +31,13 @@ public class HUDHp : MonoBehaviour {
 
     void setTransform()
     {
-        mouseHp = GameObject.Find("MouseHpPos").transform;
-        catHp = GameObject.Find("CatHpPos").transform;
-
+        mouseHp = GameObject.Find("MouseHpPos").GetComponent<Transform>();
+        catHp = GameObject.Find("CatHpPos").GetComponent<Transform>();
+        for(int i=0; i<2; i++)
+        {
+            if(NetworkManager.instance.userList[i].name != PlayerDataManager.instance.my.name)
+                player = NetworkManager.instance.FindUserController(NetworkManager.instance.userList[i].name);
+        }
         if (PlayerDataManager.instance.my.isCat)
         {
             HUDTransform = mouseHp;
@@ -44,6 +48,5 @@ public class HUDHp : MonoBehaviour {
             HUDTransform = catHp;
             isCat = true;
         }
-        ig = GetComponentsInChildren<Image>()[3];
     }
 }

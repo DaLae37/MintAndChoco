@@ -17,14 +17,11 @@ public class GameManager : MonoBehaviour {
     public GameObject Win;
     public GameObject Lose;
 
-    float delayTime;
-
     //public Image myHpBar;
     //public Image opposeHpBar;
     private void Awake()
     {
         instance = this;
-        delayTime = 0;
     }
 
     private void Start()
@@ -41,13 +38,15 @@ public class GameManager : MonoBehaviour {
             }
             else
             {
-                Lose.SetActive(true);           
+                Lose.SetActive(true);
             }
-            if (Input.GetKeyUp(0) && delayTime >= 1.5f)
-            {
-                SceneManager.LoadScene("mainScene");
-            }
-            delayTime += Time.deltaTime;
+        }
+    }
+    public void mainScene()
+    {
+        if (PlayerDataManager.instance.my.controller != null && PlayerDataManager.instance.my.controller.isDone)
+        {
+            SceneManager.LoadScene("mainScene");
         }
     }
     public void StartGame() {

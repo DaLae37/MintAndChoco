@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\InGame\myHp.cs" />
     <Compile Include="Assets\Scripts\InGame\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Main\MainManager.cs" />
+    <Compile Include="Assets\Scripts\Main\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InGameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\MainSceneManager.cs" />
     <Compile Include="Assets\Scripts\Manager\PlayerDataManager.cs" />
@@ -226,7 +227,6 @@
     <None Include="Assets\Scripts\UI\temp.txt" />
     <None Include="Assets\SocketIO\JSONObject\readme.txt" />
     <None Include="Assets\SocketIO\Readme.txt" />
-    <None Include="Assets\Sounds\temp.txt" />
     <None Include="Assets\StreamingAssets\Vuforia\MintAndChoco.xml" />
     <None Include="Assets\Vuforia\Editor\Scripts\Vuforia.UnityExtensions.Editor.XML" />
     <None Include="Assets\Vuforia\Editor\WebcamProfiles\profiles.xml" />

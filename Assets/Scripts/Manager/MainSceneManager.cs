@@ -29,6 +29,7 @@ public class MainSceneManager : MonoBehaviour {
     public void StartGame()
     {
         SceneManager.LoadScene("Main");
+        NetworkManager.instance.EmitJoin(PlayerPrefs.GetString("name"), PlayerPrefs.GetInt("isCat"));
     }
     public void Profile()
     {

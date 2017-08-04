@@ -5,9 +5,7 @@ using UnityEngine.UI;
 public class myHp : MonoBehaviour
 {
     public Image ig;
-
-    public PlayerController player;
-
+    PlayerController player;
     // Use this for initialization
     void Start()
     {
@@ -19,7 +17,15 @@ public class myHp : MonoBehaviour
     {
         if (player != null)
             ig.fillAmount = player.hp / 100f;
-        else if (GameObject.Find(PlayerDataManager.instance.my.name) != null)
-            player = GameObject.Find(PlayerDataManager.instance.my.name).GetComponent<PlayerController>();
+        else
+            set();
+    }
+    void set()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            if (NetworkManager.instance.userList[i].name == PlayerDataManager.instance.my.name)
+                player = NetworkManager.instance.FindUserController(NetworkManager.instance.userList[i].name);
+        }
     }
 }

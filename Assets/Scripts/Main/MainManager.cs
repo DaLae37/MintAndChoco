@@ -40,4 +40,8 @@ public class MainManager : MonoBehaviour {
         Destroy(GameObject.Find("GameObject").gameObject);
         SceneManager.LoadScene("MainScene");       
     }
+    public void matchStart()
+    {
+        NetworkManager.instance.EmitMatch();
+    }   
 }

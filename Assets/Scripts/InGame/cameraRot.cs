@@ -23,7 +23,7 @@ public class cameraRot : MonoBehaviour
     public float rotSpeed = 1.0f;
     public float dir = -1;
 
-    private int whatSilde = -1;
+    Touch nowTouch;
 
     void Awake() {
         instance = this;
@@ -51,35 +51,28 @@ public class cameraRot : MonoBehaviour
  
         if (Input.touchCount > 0)
         {
-            for (int i = 0; i < Input.touchCount; i++)
+            foreach (Touch touch in Input.touches)
             {
-                if (EventSystem.current.IsPointerOverGameObject(i) == false)
+                if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId))
                 {
-                    Touch touch = Input.GetTouch(i);
                     if (touch.phase == TouchPhase.Began)
                     {
-                        whatSilde = i;
                         initTouch = touch;
                     }
-                    else if (touch.phase == TouchPhase.Moved)
+                    if (touch.phase == TouchPhase.Moved)
                     {
-                        if (whatSilde == i)
-                        {
-                            float deltaX = initTouch.position.x - touch.position.x;
-                            float deltaY = initTouch.position.y - touch.position.y;
-                            rotX -= deltaY * Time.deltaTime * rotSpeed * dir;
-                            rotY += deltaX * Time.deltaTime * rotSpeed * dir;
-                            rotX = Mathf.Clamp(rotX, -45f, 45f);
+                        float deltaX = initTouch.position.x - touch.position.x;
+                        float deltaY = initTouch.position.y - touch.position.y;
+                        rotX -= deltaY * Time.deltaTime * rotSpeed * dir;
+                        rotY += deltaX * Time.deltaTime * rotSpeed * dir;
+                        rotX = Mathf.Clamp(rotX, -45f, 45f);
 
-                            cam.transform.eulerAngles = new Vector3(rotX, rotY, 0f);
-                            PlayerController.instance.transform.eulerAngles = new Vector3(0f, rotY, 0f);
-                        }
+                        cam.transform.eulerAngles = new Vector3(rotX, rotY, 0f);
+                        PlayerController.instance.transform.eulerAngles = new Vector3(0f, rotY, 0f);
                     }
                     else if (touch.phase == TouchPhase.Ended)
                     {
                         initTouch = new Touch();
-                        if (whatSilde == i)
-                            whatSilde = -1;
                     }
                 }
             }
@@ -89,6 +82,7 @@ public class cameraRot : MonoBehaviour
 
     public void SetTarget(Transform _target) {
         target = _target;
+        cam.transform.rotation = target.rotation;
     }
 
 

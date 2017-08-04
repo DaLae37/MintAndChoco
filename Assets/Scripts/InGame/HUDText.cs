@@ -24,7 +24,7 @@ public class HUDText : MonoBehaviour
     }
     void setTransform()
     {
-        mouseName = GameObject.FindWithTag("MouseNamePos").transform;
+        mouseName = GameObject.FindWithTag("MouseNamePos").GetComponent<Transform>();
         catName = GameObject.FindWithTag("CatNamePos").transform;
         if (PlayerDataManager.instance.my.isCat)
         {
