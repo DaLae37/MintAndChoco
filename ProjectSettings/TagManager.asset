@@ -12,6 +12,8 @@ TagManager:
   - Tree
   - CatNamePos
   - MouseNamePos
+  - Background
+  - Invincible
   layers:
   - Default
   - TransparentFX

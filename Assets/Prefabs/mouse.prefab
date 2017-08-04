@@ -353,7 +353,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1242021592016334}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 30, z: 0}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 4485137385559094}
@@ -378,7 +378,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1335023064155328}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
@@ -390,7 +390,7 @@ Transform:
   - {fileID: 4400035381459148}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4500827011187504
 Transform:
   m_ObjectHideFlags: 1
@@ -796,12 +796,16 @@ MonoBehaviour:
   moveSpeed: 2
   rotateSpeed: 10
   lerpTime: 20
+  isWin: 0
+  isDone: 0
   currentPos: {x: 0, y: 0, z: 0}
   currentVel: {x: 0, y: 0, z: 0}
   hp: 0
   currentRot: {x: 0, y: 0, z: 0, w: 0}
   bulletPrefab: {fileID: 1764288167984146, guid: 36328bd8ed7198543aa97e736b8d94e4,
     type: 2}
+  h: 0
+  v: 0
   syncTime: 0
   camPos: {fileID: 4022858373739502}
   bulletPos: {fileID: 4999636380646854}

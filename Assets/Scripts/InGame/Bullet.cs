@@ -19,4 +19,11 @@ public class Bullet : MonoBehaviour {
         if (!gameObject.activeSelf)
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 	}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.tag == "Invincible")
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }

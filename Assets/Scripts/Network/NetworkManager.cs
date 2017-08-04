@@ -378,13 +378,14 @@ public class NetworkManager : MonoBehaviour
     public void OnLose(SocketIOEvent e)
     {
         PlayerPrefs.SetInt("total",PlayerPrefs.GetInt("total") + 1);
-        SceneManager.LoadScene("mainScene");
+        PlayerDataManager.instance.my.controller.isDone = true;
     }
     public void OnWin(SocketIOEvent e)
     {
         PlayerPrefs.SetInt("total", PlayerPrefs.GetInt("total") + 1);
         PlayerPrefs.SetInt("win", PlayerPrefs.GetInt("win") + 1);
-        SceneManager.LoadScene("mainScene");
+        PlayerDataManager.instance.my.controller.isDone = true;
+        PlayerDataManager.instance.my.controller.isWin = true;
     }
 
     #endregion

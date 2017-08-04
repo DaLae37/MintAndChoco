@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed, rotateSpeed, lerpTime = 20f;
 
+    public bool isWin;
+    public bool isDone;
+
     Vector3 oldPos;
 
     //받는 값
@@ -56,6 +59,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        isWin = false;
+        isDone = false;
         tr = GetComponent<Transform>();
         oldRot = tr.rotation;
         oldPos = tr.position;
@@ -67,44 +72,47 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (isLocal && isInput)
+        if (!isDone)
         {
-
-            //에디터 전용 움직임
-            h = joyStick.instance.Horizontal();
-            v = joyStick.instance.Vertical();
-
-            if (Mathf.Abs(h) >= 5 || Mathf.Abs(v) >= 5)
+            if(gameObject.transform.position.y < -10)
+                NetworkManager.instance.EmitDie(PlayerPrefs.GetInt("isCat"));
+            if (isLocal && isInput)
             {
-                GameManager.instance.runImage.SetActive(true);
+
+                //에디터 전용 움직임
+                h = joyStick.instance.Horizontal();
+                v = joyStick.instance.Vertical();
+
+                if (Mathf.Abs(h) >= 5 || Mathf.Abs(v) >= 5)
+                {
+                    GameManager.instance.runImage.SetActive(true);
+                }
+                else
+                    GameManager.instance.runImage.SetActive(false);
+
             }
             else
-                GameManager.instance.runImage.SetActive(false);
+            {
+                syncTime += Time.deltaTime;
 
-        }
-        else
-        {
-            syncTime += Time.deltaTime;
-            
 
-        }
+            }
 
-        if (Mathf.Abs(h) >= 5 || Mathf.Abs(v) >= 5)
-        {
-            ani.SetBool("Run", true);
+            if (Mathf.Abs(h) >= 7 || Mathf.Abs(v) >= 7)
+            {
+                ani.SetBool("Run", true);
+            }
+            else if (Mathf.Abs(h) > 0 || Mathf.Abs(v) > 0)
+            {
+                ani.SetBool("Run", false);
+                ani.SetBool("Walk", true);
+            }
+            else
+            {
+                ani.SetBool("Run", false);
+                ani.SetBool("Walk", false);
+            }
         }
-        else if (Mathf.Abs(h) > 0 || Mathf.Abs(v) > 0)
-        {
-            ani.SetBool("Run", false);
-            ani.SetBool("Walk", true);
-        }
-        else
-        {
-            ani.SetBool("Run", false);
-            ani.SetBool("Walk", false);
-        }
-
     }
 
     private void FixedUpdate()
@@ -194,7 +202,8 @@ public class PlayerController : MonoBehaviour
 
     public void SendBulllet()
     {
-        NetworkManager.instance.EmitBullet(0);
+        if(!isDone)
+            NetworkManager.instance.EmitBullet(0);
     }
     private void OnCollisionEnter(Collision collision)
     {
