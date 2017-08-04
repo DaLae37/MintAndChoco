@@ -46,8 +46,7 @@ public class cameraRot : MonoBehaviour
         if (target != null)
         {
             cam.transform.position = target.position + distance;
-            cam.transform.rotation = target.rotation;
-            
+           // cam.transform.rotation = target.rotation;
         }
  
         if (Input.touchCount > 0)

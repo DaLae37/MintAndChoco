@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
     Transform tr;
     Rigidbody ri;
     Animator ani;
+    AudioSource audioSource;
+
+    public AudioClip shotBGS;
 
     public Transform camPos;
     public Transform bulletPos;
@@ -67,6 +70,8 @@ public class PlayerController : MonoBehaviour
         hp = 100;
         ri = GetComponent<Rigidbody>();
         ani = tr.GetChild(0).GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -198,6 +203,7 @@ public class PlayerController : MonoBehaviour
     {
         GameObject b = Instantiate(bulletPrefab, bulletPos.position, bulletPos.rotation);
         b.transform.SetParent(GameObject.Find("bullets").transform);
+        audioSource.PlayOneShot(shotBGS);
     }
 
     public void SendBulllet()

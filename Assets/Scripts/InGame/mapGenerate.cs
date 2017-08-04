@@ -6,6 +6,8 @@ public class mapGenerate : MonoBehaviour {
     public GameObject[] tiles = new GameObject[4];
     public GameObject tree;
     public GameObject rock;
+
+    public GameObject maps;
     // Use this for initialization
     void Start () {
 		for(int i=0; i<30; i++)
@@ -14,7 +16,7 @@ public class mapGenerate : MonoBehaviour {
             {
                 GameObject m = Instantiate(tiles[(int)Random.Range(0, 4)]);
                 m.transform.position = new Vector3(-22.5f + i * 1.5f,-1.5f, -22.5f+ j * 1.5f);
-                m.transform.SetParent(GameObject.Find("Maps").transform);
+                m.transform.SetParent(maps.transform);
             }
         }
         int rockSum = Random.Range(0, 4);
@@ -31,8 +33,4 @@ public class mapGenerate : MonoBehaviour {
         }
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

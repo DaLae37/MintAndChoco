@@ -33,9 +33,8 @@ public class GameManager : MonoBehaviour {
     }
     private void Update()
     {
-        if (PlayerDataManager.instance.my.controller.isDone)
+        if (PlayerDataManager.instance.my.controller != null && PlayerDataManager.instance.my.controller.isDone)
         {
-            
             if (PlayerDataManager.instance.my.controller.isWin)
             {
                 Win.SetActive(true);
