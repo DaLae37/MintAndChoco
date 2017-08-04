@@ -280,13 +280,16 @@ public class NetworkManager : MonoBehaviour
         Vector3 pos = new Vector3(json.GetField("posX").f, json.GetField("posY").f, json.GetField("posZ").f);
         Vector3 vel = new Vector3(json.GetField("velX").f, json.GetField("velY").f, json.GetField("velZ").f);
 
-        FindUserController(name).SetPosition(pos, vel);
+        float h = json.GetField("h").f;
+        float v = json.GetField("v").f;
+
+        FindUserController(name).SetPosition(pos, vel, h, v);
     }
 
     /// <summary>
     /// 위치를 보냅니다.
     /// </summary>
-    public void EmitMove(Vector3 _pos, Vector3 _vel)
+    public void EmitMove(Vector3 _pos, Vector3 _vel, float _h, float _v)
     {
         JSONObject json = new JSONObject(JSONObject.Type.OBJECT);
         json.AddField("name", PlayerDataManager.instance.my.name);
@@ -296,6 +299,9 @@ public class NetworkManager : MonoBehaviour
         json.AddField("velX", _vel.x);
         json.AddField("velY", _vel.y);
         json.AddField("velZ", _vel.z);
+
+        json.AddField("h", _h);
+        json.AddField("v", _v);
 
         socket.Emit("move", json);
     }

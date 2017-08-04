@@ -1251,6 +1251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chocoImage: {fileID: 1036521334}
   mintImage: {fileID: 76840078}
+  runImage: {fileID: 732478604}
   mintPrefab: {fileID: 1335023064155328, guid: 3bf852a8ec87b92408d04ed93d659a2d, type: 2}
   chocoPrefab: {fileID: 1838027912972072, guid: f7d1fb7de2c02984a8de2fb7b93a114d,
     type: 2}

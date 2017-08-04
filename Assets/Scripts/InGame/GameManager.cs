@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public GameObject chocoImage;
     public GameObject mintImage;
+
+    public GameObject runImage;
+
     public GameObject mintPrefab;
     public GameObject chocoPrefab;
     //public Image myHpBar;

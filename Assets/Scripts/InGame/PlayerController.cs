@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    [SerializeField]
     float h, v;
 
     [SerializeField]
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     //캐싱
     Transform tr;
     Rigidbody ri;
+    Animator ani;
 
     public Transform camPos;
     public Transform bulletPos;
@@ -59,6 +61,7 @@ public class PlayerController : MonoBehaviour
         oldPos = tr.position;
         hp = 100;
         ri = GetComponent<Rigidbody>();
+        ani = tr.GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -72,19 +75,34 @@ public class PlayerController : MonoBehaviour
             h = joyStick.instance.Horizontal();
             v = joyStick.instance.Vertical();
 
+            if (Mathf.Abs(h) >= 5 || Mathf.Abs(v) >= 5)
+            {
+                GameManager.instance.runImage.SetActive(true);
+            }
+            else
+                GameManager.instance.runImage.SetActive(false);
+
         }
         else
         {
             syncTime += Time.deltaTime;
-            if (currentVel.normalized != Vector3.zero)
-            {
-                // 달리는 애니메이션 실행
-            }
-            else
-            {
-                //대기 상태 애니메이션 실행
-            }
+            
 
+        }
+
+        if (Mathf.Abs(h) >= 5 || Mathf.Abs(v) >= 5)
+        {
+            ani.SetBool("Run", true);
+        }
+        else if (Mathf.Abs(h) > 0 || Mathf.Abs(v) > 0)
+        {
+            ani.SetBool("Run", false);
+            ani.SetBool("Walk", true);
+        }
+        else
+        {
+            ani.SetBool("Run", false);
+            ani.SetBool("Walk", false);
         }
 
     }
@@ -129,7 +147,7 @@ public class PlayerController : MonoBehaviour
     {
         if (oldPos != tr.position)
         {
-            NetworkManager.instance.EmitMove(tr.position, ri.velocity);
+            NetworkManager.instance.EmitMove(tr.position, ri.velocity, h, v);
             oldPos = tr.position;
         }
     }
@@ -143,11 +161,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SetPosition(Vector3 _currentPos, Vector3 _currentVel)
+    public void SetPosition(Vector3 _currentPos, Vector3 _currentVel, float _h, float _v)
     {
         syncTime = 0;
         currentPos = _currentPos;
         currentVel = _currentVel;
+        h = _h;
+        v = _v;
     }
 
     public void SetRotation(Quaternion _rot)
